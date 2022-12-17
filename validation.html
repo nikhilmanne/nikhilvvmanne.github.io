@@ -1,0 +1,216 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JavaScript Form Validation</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans&family=Kanit:ital@1&family=Merriweather:ital,wght@0,300;0,400;1,300;1,400&display=swap');
+        :root {
+    --main-bg-color: #2874f0;
+  }
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background: #be4244;
+            background: -webkit-linear-gradient(to right, #FFEDBC, #ED4264);  
+            background: linear-gradient(to right, #FFEDBC, #1a1e58); 
+
+        }
+
+
+        
+
+        .ri{
+            height: 75vh;
+           width: 32vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            /* background: #ED4264;
+            background: -webkit-linear-gradient(to right, #FFEDBC, #ED4264);  
+            background: linear-gradient(to right, #bcf2ff, #1e4880);  */
+            background: -webkit-linear-gradient(to right, #FFEDBC, #ED4264);  
+            background: linear-gradient(to right, #FFEDBC, #1a1e58); 
+
+        }
+
+
+        input {
+            border:none;
+            border-bottom: 1px solid black;
+            background: transparent;
+
+            border-radius: 5px;
+            padding: 0px 10px;
+        }
+
+        .form {
+            /* display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column; */
+        }
+
+        .form-design {
+            display: block;
+            gap: 0;
+            margin: 15px 0px;
+        }
+        p{
+             color:red;
+        }
+       .but{
+        height: 20px;
+        width: 84px;
+       }
+       .but:hover{
+        height: 23px;
+        width: 86px;
+       }
+       h1{
+        font-size: 15PX;
+        font-family: 'Merriweather', serif;
+       }
+       footer{
+        margin: 5PX;
+       }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">  
+        <div class="re">
+            <div class="ri">
+        <h1> REGISTRATION FORM </h1>
+        <form aciton="/myaaction.php" class="form" name="registration-FORM" onsubmit="return validateForm()" method="post">
+
+            <div class="formm" id="name">
+                Name
+                <input type="text" name="UR-name">
+                    <p class="formerror"> </p>
+            </div>
+
+            <div class="formm" id="email">
+                Email
+                <input type="email" name="UR-email" >
+                <p class="formerror"> </p>
+            </div>
+
+            <div class="formm" id="phone">
+                Phone
+                <input type="phone" name="UR-phone" >
+                    <p class="formerror"></p>
+            </div>
+
+            <div class="formm" id="pass">
+                Password
+                <input type="password" name="-URpass" >
+                    <p class="formerror"></p>
+            </div>
+
+            <div class="formm" id="cpass">
+                Confirm Password
+                <input type="password" name="UR-pass" >
+                    <p class="formerror"></p>
+            </div>
+
+            <input class="but" type="submit" value="Submit" onclick="popUp()">
+
+        
+        </form>
+    </div>
+    </div>
+    <footer>
+        @NIKHIL MANNE | USN NO. ME21D072 | MECHANICAL ENGINEERING |  SB JAIN INSTITUTE , NAGPUR
+    </footer>
+    </div>
+   
+</body>
+<script>
+    function flushErrors() {
+
+        errors = document.getElementsByClassName('formerror');
+        for (let item of errors) {
+            item.innerHTML = "";
+        }
+
+
+    }
+    function iferror(id, error) {
+       
+        element = document.getElementById(id);
+        element.getElementsByClassName('formerror')[0].innerHTML = error;
+
+    }
+
+    function validateForm() {
+        var returnvalue = true;
+        flushErrors();
+
+        
+        var name = document.forms['registration-FORM']["UR-name"].value;
+        
+
+        if (name.length == 0) {
+            iferror("name", "Please enter your name");
+            returnvalue = false;
+        }
+
+        var email = document.forms['registration-FORM']["UR-email"].value;
+        if (email.length ==0) {
+            iferror("email", "Please enter your email address");
+            returnvalue = false;
+        }
+
+        var phone = document.forms['registration-FORM']["UR-phone"].value;
+        if (phone.length != 10) {
+            iferror("phone", "Phone number should be of 10 digits");
+            returnvalue = false;
+        }
+
+        var password = document.forms['registration-FORM']["UR-pass"].value;
+        if (password.length < 6) {
+
+           
+            iferror("pass", "Password should be atleast 6 characters long");
+            returnvalue = false;
+        }
+
+
+
+
+
+
+
+        var cpassword = document.forms['registration-FORM']["UR-pass"].value;
+        if (cpassword != password) {
+            iferror("cpass", "Password and Confirm password should match");
+            returnvalue = false;
+        }
+
+        return returnvalue;
+    }
+    
+    
+
+
+</script>
+
+</html>
